@@ -1,0 +1,4 @@
+dbt-env/
+retail_project/target/
+retail_project/dbt_packages/
+__pycache__/
