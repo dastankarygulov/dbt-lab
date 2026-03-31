@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: mart_fact_sales
+    description: "Final fact table with one row per order line, enriched with date parts"
+    columns:
+      - name: sale_id
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+      - name: total_amount
+        description: "unit_price * quantity — total revenue for this order line"
+        tests:
+          - not_null
+      - name: year
+        tests:
+          - not_null
+      - name: month
+        tests:
+          - not_null

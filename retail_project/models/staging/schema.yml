@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Cleaned and renamed raw orders with total_amount derived column"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order line"
+        tests:
+          - unique
+          - not_null
+      - name: quantity
+        description: "Number of units purchased"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Price per unit"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "unit_price * quantity"
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: "Deduplicated customers with their most recent country"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - unique
+          - not_null
+      - name: country
+        description: "Customer country — must be one of the known markets"
+        tests:
+          - accepted_values:
+              values: ['Cambodia', 'Thailand', 'Vietnam', 'Singapore']

@@ -1,0 +1,23 @@
+
+  create view "retail_db"."public"."stg_orders__dbt_tmp"
+    
+    
+  as (
+    -- Staging: clean and rename raw order fields
+-- Adds total_amount as a derived column
+SELECT
+    order_id,
+    customer_id,
+    customer_name,
+    country,
+    product_id,
+    product_name,
+    category,
+    unit_price,
+    quantity,
+    order_date,
+    store_id,
+    store_city,
+    unit_price * quantity AS total_amount
+FROM "retail_db"."public"."raw_orders"
+  );
